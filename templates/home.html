@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+            body {
+                background: #20262E;
+                padding: 20px;
+                font-family: Helvetica;
+            }
+
+            #app {
+                background: #fff;
+                border-radius: 4px;
+                padding: 20px;
+                transition: all 0.2s;
+            }
+            /* css */
+
+            a {
+                animation-duration: 800ms;
+                animation-name: blink;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+            }
+
+            @keyframes blink {
+                from {
+                    opacity: 1;
+                }
+                to {
+                    opacity: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div id="app"></div>
+        
+        <script src="" async defer></script>
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script type="text/babel">
+            const paraGraphOne= "Rainbow text flask app demo."
+
+            const paraGraphTwo= "Deployed to AWS FARGATE using a generated docker-compose file. AWS(ECS & ECR) + Docker-compose."
+
+            function getObj(word, color) {
+                return {
+                    text: word,
+                    color: color
+                }
+            }
+
+            function alterTextColor(paragraph) {
+                var words = paragraph.split(" ");
+                var colors = ["red", "blue", "yellow", "green", "orange", "violet", "indigo", "pink", "purple"];
+                var new_array = [];
+
+            
+                for (var i = 0; i < words.length; i++ ) {
+                    var new_obj = getObj(words[i], colors[Math.floor(Math.random()*colors.length)]);
+                    new_array.push(new_obj);
+                }
+            
+                return (
+                    <p>
+                    {new_array.map(wordList => (
+                        <font color={wordList.color}>{wordList.text} </font>
+                    ))}
+                    </p>
+                );
+            }
+            function blink() {
+                var element = (
+                    <div>
+                        <div>{alterTextColor(paraGraphOne)}</div>
+                        <div>{alterTextColor(paraGraphTwo)}</div>
+                    </div>
+                );
+
+                ReactDOM.render(element, document.querySelector("#app")) 
+            }
+
+            setInterval(blink, 1000);
+        </script>
+    </body>
+</html>
