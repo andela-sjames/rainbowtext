@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  server:
+    container_name: rainbowtext_server
+    restart: always
+    build: .
+    volumes:
+      - .:/app
+
+  nginx:
+    container_name: rainbowtext_proxy
+    build: ./nginx
+    depends_on:
+      - server
+    ports:
+      - "127.0.0.1:80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
