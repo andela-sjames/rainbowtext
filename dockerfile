@@ -3,7 +3,14 @@ FROM python:3.7.2-alpine3.8
 ENV PYTHONUNBUFFERED 1
 
 ADD requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+
+RUN apk update
+RUN apk add --no-cache --virtual build-dependencies \
+    gcc \
+    libc-dev \
+    linux-headers \
+    && pip install --no-cache-dir -r requirements.txt \
+    && apk del build-dependencies
 
 ADD . /app/
 WORKDIR /app
@@ -12,6 +19,4 @@ WORKDIR /app
 RUN addgroup -S docker && adduser -S docker -D docker
 USER docker
 
-ENTRYPOINT [ "python" ]
-
-CMD [ "app.py" ]
+ENTRYPOINT [ "uwsgi", "--ini", "uwsgi.ini" ]
