@@ -125,6 +125,22 @@ def update_services(ecr_repo_obj=None):
     print(services, "the service")
 
 
+# Write the new docker-compose.yml file.
+def create_deploy_docker_compose_file(output_file):
+    with open(output_file, "w") as out_file:
+        yaml.safe_dump(stack, out_file, default_flow_style=False)
+
+
+# yaml that is produced is a bit buggy.
+fh = open(output_file, "r+")
+lines = map(lambda a: re.sub(r"^\s{4}-", "      -", a), fh.readlines())
+fh.close()
+with open(output_file, "w") as f:
+    f.writelines(lines)
+
+print "Wrote new compose file."
+print "COMPOSE_FILE={}".format(output_file)
+
 res = create_ecr_repo(services)
 re_tag_images(res)
 push_to_ecr(res)
