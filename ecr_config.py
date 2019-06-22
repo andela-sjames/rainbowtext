@@ -12,15 +12,15 @@ AWS_ACCOUNT_ID = os.getenv('AWS_ACCOUNT_ID', 'your_AWS_id')
 AWS_REGION = os.getenv('AWS_REGION', 'your_aws_region')
 
 # Get the name of the current directory
-project_name = os.path.basename(os.path.realpath("."))
+PROJECT_NAME = os.path.basename(os.path.realpath("."))
 
 # use if repository exist
-SERVER_REPOSITORY_URI = f'{AWS_ACCOUNT_ID}.dkr.ecr.{AWS_REGION}.amazonaws.com/{project_name}_server'
-NGINX_REPOSITORY_URI = f'{AWS_ACCOUNT_ID}.dkr.ecr.{AWS_REGION}.amazonaws.com/{project_name}_nginx'
+SERVER_REPOSITORY_URI = f'{AWS_ACCOUNT_ID}.dkr.ecr.{AWS_REGION}.amazonaws.com/{PROJECT_NAME}_server'
+NGINX_REPOSITORY_URI = f'{AWS_ACCOUNT_ID}.dkr.ecr.{AWS_REGION}.amazonaws.com/{PROJECT_NAME}_nginx'
 
 ECR_REPO_OBJ = {
-    f"{project_name}_server": SERVER_REPOSITORY_URI,
-    f"{project_name}_nginx": NGINX_REPOSITORY_URI
+    f"{PROJECT_NAME}_server": SERVER_REPOSITORY_URI,
+    f"{PROJECT_NAME}_nginx": NGINX_REPOSITORY_URI
 }
 
 push_operations = dict()
@@ -36,7 +36,7 @@ if input_file == output_file == "docker-compose.yml":
     print("Please unset DOCKER_COMPOSE_YML or set it to something else.")
     exit(1)
 
-print(project_name, output_file, "The project name")
+print(PROJECT_NAME, output_file, "The project name")
 
 stack = yaml.safe_load(open(input_file))
 services = stack["services"]
@@ -51,7 +51,7 @@ def create_ecr_repo(services):
     for service_name, service in services.items():
         if "build" in service:
             # create repository
-            ecr_repository_name = f'{project_name.lower()}_{service_name}'
+            ecr_repository_name = f'{PROJECT_NAME.lower()}_{service_name}'
             try:
                 response = client.create_repository(
                     repositoryName=ecr_repository_name,
@@ -79,6 +79,7 @@ def push(ecr_repo_obj):
     for key, value in ecr_repo_obj.items():
         new_tag = f'{value}:latest'
         # push_operations[key] = subprocess.Popen(["docker", "push", new_tag])
+
         push = subprocess.Popen(["docker", "push", new_tag])
         status = f"Waiting for {key} push to complete..."
         print(status)
