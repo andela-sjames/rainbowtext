@@ -38,7 +38,7 @@ if input_file == output_file == "docker-compose.yml":
 
 print(project_name, output_file, "The project name")
 
-stack = yaml.load(open(input_file))
+stack = yaml.safe_load(open(input_file))
 services = stack["services"]
 
 # # create output file in root dir.
