@@ -25,8 +25,10 @@ ECR_REPO_OBJ = {
 
 push_operations = dict()
 
+# configure aws 
+# use shell in the meantime, might include a script later.
 
-# Generate version number for built
+# Generate version number for build
 version = str(int(time.time()))
 
 input_file = os.environ.get("DOCKER_COMPOSE_YML", "docker-compose.yml")
@@ -43,7 +45,7 @@ stack = yaml.load(open(input_file))
 services = stack["services"]
 
 # retrieve the login command to use to authenticate your Docker client to your registry.
-# subprocess.Popen(["aws", "ecr", "get-login", "--no-include-email", "--region", "us-east-1"])
+subprocess.Popen(["aws", "ecr", "get-login", "--no-include-email", "--region", "us-east-1"])
 
 # response = client.describe_repositories()
 # print(response, "describe")
@@ -138,8 +140,8 @@ fh.close()
 with open(output_file, "w") as f:
     f.writelines(lines)
 
-print "Wrote new compose file."
-print "COMPOSE_FILE={}".format(output_file)
+print("Wrote new compose file.")
+print(f"COMPOSE_FILE={output_file}")
 
 res = create_ecr_repo(services)
 re_tag_images(res)
