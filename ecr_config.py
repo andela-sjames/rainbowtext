@@ -15,12 +15,12 @@ AWS_REGION = os.getenv('AWS_REGION', 'your_aws_region')
 project_name = os.path.basename(os.path.realpath("."))
 
 # use if repository exist
-SERVER_REPOSITORY_URI = f'{AWS_ACCOUNT_ID}.dkr.ecr.{AWS_REGION}.amazonaws.com/temboplatform_server'
-NGINX_REPOSITORY_URI = f'{AWS_ACCOUNT_ID}.dkr.ecr.{AWS_REGION}.amazonaws.com/temboplatform_nginx'
+SERVER_REPOSITORY_URI = f'{AWS_ACCOUNT_ID}.dkr.ecr.{AWS_REGION}.amazonaws.com/{project_name}_server'
+NGINX_REPOSITORY_URI = f'{AWS_ACCOUNT_ID}.dkr.ecr.{AWS_REGION}.amazonaws.com/{project_name}_nginx'
 
 ECR_REPO_OBJ = {
-    'temboplatform_server': SERVER_REPOSITORY_URI,
-    'temboplatform_nginx': NGINX_REPOSITORY_URI
+    f"{project_name}_server": SERVER_REPOSITORY_URI,
+    f"{project_name}_nginx": NGINX_REPOSITORY_URI
 }
 
 push_operations = dict()

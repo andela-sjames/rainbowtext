@@ -103,3 +103,4 @@ venv.bak/
 # mypy
 .mypy_cache/
 code.txt
+docker-compose.ecs.yml
