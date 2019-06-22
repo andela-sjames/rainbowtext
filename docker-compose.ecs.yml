@@ -1,16 +1,16 @@
 services:
   nginx:
-    build: ./nginx
     container_name: rainbowtext_proxy
     depends_on:
       - server
+    image: 768614346553.dkr.ecr.us-east-1.amazonaws.com/temboplatform_nginx
     ports:
       - 127.0.0.1:80:80
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
   server:
-    build: .
     container_name: rainbowtext_server
+    image: 768614346553.dkr.ecr.us-east-1.amazonaws.com/temboplatform_server
     restart: always
     volumes:
       - .:/app
