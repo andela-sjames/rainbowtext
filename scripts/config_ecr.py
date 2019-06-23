@@ -98,6 +98,7 @@ def update(service_name, service, ecr_repo_obj):
             del service["build"]
             service["image"] = value
 
+
 def re_tag_images(ecr_repo_obj=None):
     if ecr_repo_obj is None:
         ecr_repo_obj = ECR_REPO_OBJ
@@ -118,6 +119,9 @@ def update_services(ecr_repo_obj=None):
     for service_name, service in services.items():
         if "build" in service:
             update(service_name, service, ecr_repo_obj)
+        
+        if "volumes" in service:
+            del service["volumes"]
 
     print(services, "the service")
 
