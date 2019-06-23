@@ -41,9 +41,6 @@ print(PROJECT_NAME, output_file, "The project name")
 stack = yaml.safe_load(open(input_file))
 services = stack["services"]
 
-# response = client.describe_repositories()
-# print(response, "describe")
-
 # create repository
 def create_ecr_repo(services):
     obj = {}
@@ -78,19 +75,11 @@ def tag(ecr_repo_obj):
 def push(ecr_repo_obj):
     for key, value in ecr_repo_obj.items():
         new_tag = f'{value}:latest'
-        # push_operations[key] = subprocess.Popen(["docker", "push", new_tag])
-
         push = subprocess.Popen(["docker", "push", new_tag])
         status = f"Waiting for {key} push to complete..."
         print(status)
         push.wait()
         print("Done.")
-
-    # for service_name, popen_object in push_operations.items():
-    #     status = f"Waiting for {service_name} push to complete..."
-    #     print(status)
-    #     popen_object.wait()
-    #     print("Done.")
 
 def update(service_name, service, ecr_repo_obj):
     for key, value in ecr_repo_obj.items():
