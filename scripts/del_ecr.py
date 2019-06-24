@@ -17,9 +17,12 @@ ECR_REPO_OBJ = {
     f"{PROJECT_NAME}_server": SERVER_REPOSITORY_URI,
     f"{PROJECT_NAME}_nginx": NGINX_REPOSITORY_URI
 }
+
 for key, value in ECR_REPO_OBJ.items():
     response = client.delete_repository(
         registryId=AWS_ACCOUNT_ID,
         repositoryName=key,
         force=True
     )
+
+    print(response)
