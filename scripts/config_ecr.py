@@ -41,6 +41,7 @@ print(PROJECT_NAME, output_file, "The project name")
 stack = yaml.safe_load(open(input_file))
 services = stack["services"]
 
+
 # create repository
 def create_ecr_repo(services):
     obj = {}
@@ -66,11 +67,13 @@ def create_ecr_repo(services):
                 return None
     return obj
 
+
 def tag(ecr_repo_obj):
     for key, value in ecr_repo_obj.items():
         original_tag = f'{key}:latest'
         new_tag = f'{value}:latest'
         subprocess.check_call(["docker", "tag", original_tag, new_tag])
+
 
 def push(ecr_repo_obj):
     for key, value in ecr_repo_obj.items():
@@ -80,6 +83,7 @@ def push(ecr_repo_obj):
         print(status)
         push.wait()
         print("Done.")
+
 
 def update(service_name, service, ecr_repo_obj):
     for key, value in ecr_repo_obj.items():
@@ -92,11 +96,13 @@ def re_tag_images(ecr_repo_obj=None):
     if ecr_repo_obj is None:
         ecr_repo_obj = ECR_REPO_OBJ
     tag(ecr_repo_obj)
-    
+
+   
 def push_to_ecr(ecr_repo_obj=None):
     if ecr_repo_obj is None:
         ecr_repo_obj = ECR_REPO_OBJ
     push(ECR_REPO_OBJ)
+
 
 def update_services(ecr_repo_obj=None):
     # Replace the "build" definition by an "image" definition,
