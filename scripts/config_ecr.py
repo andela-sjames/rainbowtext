@@ -97,7 +97,7 @@ def re_tag_images(ecr_repo_obj=None):
         ecr_repo_obj = ECR_REPO_OBJ
     tag(ecr_repo_obj)
 
-   
+
 def push_to_ecr(ecr_repo_obj=None):
     if ecr_repo_obj is None:
         ecr_repo_obj = ECR_REPO_OBJ
@@ -114,7 +114,7 @@ def update_services(ecr_repo_obj=None):
     for service_name, service in services.items():
         if "build" in service:
             update(service_name, service, ecr_repo_obj)
-        
+
         if "volumes" in service:
             del service["volumes"]
 
@@ -125,7 +125,7 @@ def update_services(ecr_repo_obj=None):
 def create_deploy_docker_compose_file(output_file):
     with open(output_file, "w") as out_file:
         yaml.safe_dump(stack, out_file, default_flow_style=False)
-    
+
     # yaml that is produced is a bit buggy.
     fh = open(output_file, "r+")
     lines = map(lambda a: re.sub(r"^\s{4}-", "      -", a), fh.readlines())
