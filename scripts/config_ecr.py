@@ -8,15 +8,15 @@ import boto3
 
 client = boto3.client('ecr')
 
-AWS_ACCOUNT_ID = os.getenv('AWS_ACCOUNT_ID', 'your_AWS_id')
-AWS_REGION = os.getenv('AWS_REGION', 'your_aws_region')
+ID = os.getenv('AWS_ACCOUNT_ID', 'your_AWS_id')
+REGION = os.getenv('AWS_REGION', 'your_aws_region')
 
 # Get the name of the current directory
-PROJECT_NAME = os.path.basename(os.path.realpath("."))
+PROJECT = os.path.basename(os.path.realpath("."))
 
 # use if repository exist
-SERVER_REPOSITORY_URI = f'{AWS_ACCOUNT_ID}.dkr.ecr.{AWS_REGION}.amazonaws.com/{PROJECT_NAME}_server'
-NGINX_REPOSITORY_URI = f'{AWS_ACCOUNT_ID}.dkr.ecr.{AWS_REGION}.amazonaws.com/{PROJECT_NAME}_nginx'
+SERVER_REPOSITORY_URI = f'{ID}.dkr.ecr.{REGION}.amazonaws.com/{PROJECT}_server'
+NGINX_REPOSITORY_URI = f'{ID}.dkr.ecr.{REGION}.amazonaws.com/{PROJECT}_nginx'
 
 ECR_REPO_OBJ = {
     f"{PROJECT_NAME}_server": SERVER_REPOSITORY_URI,
