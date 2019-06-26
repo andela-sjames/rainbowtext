@@ -28,8 +28,11 @@ push_operations = dict()
 # Generate version number for build
 version = str(int(time.time()))
 
-input_file = os.environ.get("DOCKER_COMPOSE_YML_INPUT", "docker-compose.yml")
-output_file = os.environ.get("DOCKER_COMPOSE_YML_OUTPUT", "docker-compose.yml-{}".format(version))
+alt_input = "docker-compose.yml"
+alt_output = f"docker-compose.yml-{version}"
+
+input_file = os.environ.get("DOCKER_COMPOSE_YML_INPUT", alt_input)
+output_file = os.environ.get("DOCKER_COMPOSE_YML_OUTPUT", alt_output)
 
 if input_file == output_file == "docker-compose.yml":
     print("I will not clobber your docker-compose.yml file.")
