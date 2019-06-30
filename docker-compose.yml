@@ -7,7 +7,6 @@ services:
     build: .
     volumes:
       - .:/app
-
   nginx:
     container_name: rainbowtext_proxy
     build: ./nginx
