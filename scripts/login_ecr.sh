@@ -8,8 +8,10 @@ source .env
 
 # login to ECR
 echo 'logging into ECR'
-aws configure set default.region us-east-1
-aws configure set default.output json
+aws configure aws_access_key_id "$AWS_ACCESS_KEY_ID" --profile rainbowtext
+aws configure aws_secret_access_key "$AWS_SECRET_ACCESS_KEY" --profile rainbowtext
+aws configure set default.region us-east-1 --profile rainbowtext
+aws configure set default.output json --profile rainbowtext
 
 # get logging details.
 token=$(aws ecr get-authorization-token)
