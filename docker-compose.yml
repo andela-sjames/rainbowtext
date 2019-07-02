@@ -13,6 +13,6 @@ services:
     depends_on:
       - server
     ports:
-      - "127.0.0.1:80:80"
+      - "80:80"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro

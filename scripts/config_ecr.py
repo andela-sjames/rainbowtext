@@ -123,6 +123,15 @@ def update_services(ecr_repo_obj=None):
                     'awslogs-stream-prefix': 'rainbowtext-server'
                     }
                 }
+        if service_name == "nginx":
+            service["logging"] = {
+                'driver': 'awslogs',
+                'options': {
+                    'awslogs-group': 'rainbowtext',
+                    'awslogs-region': 'us-east-1', 
+                    'awslogs-stream-prefix': 'rainbowtext-nginx'
+                    }
+                }
         if "build" in service:
             update(service_name, service, ecr_repo_obj)
 

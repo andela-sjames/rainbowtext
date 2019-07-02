@@ -4,7 +4,7 @@
 # video: https://aws.amazon.com/ecr/getting-started/
 
 # load env variables (.env is in the same level as shell script.)
-source .env
+source scripts/.env
 
 # login to ECR
 echo 'logging into ECR'
