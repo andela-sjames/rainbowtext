@@ -5,12 +5,6 @@ services:
     container_name: rainbowtext_server
     restart: always
     build: .
-    logging:
-      driver: awslogs
-      options: 
-        awslogs-group: rainbowtext
-        awslogs-region: us-east-1
-        awslogs-stream-prefix: rainbowtext-server
     volumes:
       - .:/app
   nginx:

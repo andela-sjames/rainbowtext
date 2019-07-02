@@ -44,9 +44,6 @@ print(PROJECT, output_file, "The project name")
 stack = yaml.safe_load(open(input_file))
 services = stack["services"]
 
-print(services)
-
-
 # create repository
 def create_ecr_repo(services):
     obj = {}
@@ -117,6 +114,15 @@ def update_services(ecr_repo_obj=None):
         ecr_repo_obj = ECR_REPO_OBJ
 
     for service_name, service in services.items():
+        if service_name == "server":
+            service["logging"] = {
+                'driver': 'awslogs',
+                'options': {
+                    'awslogs-group': 'rainbowtext',
+                    'awslogs-region': 'us-east-1', 
+                    'awslogs-stream-prefix': 'rainbowtext-server'
+                    }
+                }
         if "build" in service:
             update(service_name, service, ecr_repo_obj)
 
@@ -142,9 +148,9 @@ def create_deploy_docker_compose_file(output_file):
 print("Wrote new compose file.")
 print(f"COMPOSE_FILE={output_file}")
 
-# res = create_ecr_repo(services)
-# re_tag_images(res)
-# push_to_ecr(res)
-# update_services(res)
+res = create_ecr_repo(services)
+re_tag_images(res)
+push_to_ecr(res)
+update_services(res)
 
-# create_deploy_docker_compose_file(output_file)
+create_deploy_docker_compose_file(output_file)
