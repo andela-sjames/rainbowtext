@@ -19,8 +19,8 @@ SERVER_REPOSITORY_URI = f'{ID}.dkr.ecr.{REGION}.amazonaws.com/{PROJECT}_server'
 NGINX_REPOSITORY_URI = f'{ID}.dkr.ecr.{REGION}.amazonaws.com/{PROJECT}_nginx'
 
 ECR_REPO_OBJ = {
-    f"{PROJECT_NAME}_server": SERVER_REPOSITORY_URI,
-    f"{PROJECT_NAME}_nginx": NGINX_REPOSITORY_URI
+    f"{PROJECT}_server": SERVER_REPOSITORY_URI,
+    f"{PROJECT}_nginx": NGINX_REPOSITORY_URI
 }
 
 push_operations = dict()
@@ -43,6 +43,8 @@ print(PROJECT_NAME, output_file, "The project name")
 
 stack = yaml.safe_load(open(input_file))
 services = stack["services"]
+
+print(services)
 
 
 # create repository
@@ -140,9 +142,9 @@ def create_deploy_docker_compose_file(output_file):
 print("Wrote new compose file.")
 print(f"COMPOSE_FILE={output_file}")
 
-res = create_ecr_repo(services)
-re_tag_images(res)
-push_to_ecr(res)
-update_services(res)
+# res = create_ecr_repo(services)
+# re_tag_images(res)
+# push_to_ecr(res)
+# update_services(res)
 
-create_deploy_docker_compose_file(output_file)
+# create_deploy_docker_compose_file(output_file)
