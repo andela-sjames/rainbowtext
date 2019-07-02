@@ -104,6 +104,7 @@ venv.bak/
 .mypy_cache/
 code.txt
 docker-compose.ecs.yml
+ecs-params.ecs.yml
 
 scripts/.env
 scripts/get_details.sh

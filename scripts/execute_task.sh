@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -e
+
 
 # Task Execution IAM Role
 # - create the task execution role
@@ -33,18 +35,15 @@ subnet_a=${array[0]}
 subnet_b=${array[1]}
 
 echo $vpc_id
-echo $security_grp
+echo $security_grp_id
 echo $subnet_a
 echo $subnet_b
 
-# create security group using created vpc_id
-aws ec2 create-security-group --group-name "${rainbowtext}-sg" --description "My ${rainbowtext} security group" --vpc-id ${vpc_id}
-
 # add a security group rule to allow inbound access on port 80
-aws ec2 authorize-security-group-ingress --group-name "${rainbowtext}-sg" --protocol tcp --port 80 --cidr 0.0.0.0/0
-
-
+aws ec2 authorize-security-group-ingress --group-id "${security_grp_id}" --protocol tcp --port 80 --cidr 0.0.0.0/0
 
 # delete cluster
 # aws ecs delete-cluster --cluster ${rainbowtext}
 
+# call the python script with the arguments passed
+python scripts/ecs_params.py "${vpc_id}" "${security_grp_id}" "${subnet_a}" "$subnet_b}"
