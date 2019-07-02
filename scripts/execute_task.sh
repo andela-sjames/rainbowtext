@@ -21,20 +21,28 @@ ecs-cli configure profile --access-key "$AWS_ACCESS_KEY_ID" --secret-key "$AWS_S
 result=$(ecs-cli up --instance-role ecsRainbowtextTaskExecutionRole --cluster ${rainbowtext})
 
 echo $result
-                          
-# time="2019-07-02T02:43:36+01:00" level=warning msg="You will not be able to SSH into your EC2 instances without a key pair."
-# time="2019-07-02T02:43:37+01:00" level=info msg="Defaulting instance type to t2.micro"
-# time="2019-07-02T02:43:39+01:00" level=info msg="Using recommended Amazon Linux 2 AMI with ECS Agent 1.29.0 and Docker version 18.06.1-ce"
-# time="2019-07-02T02:43:40+01:00" level=info msg="Created cluster" cluster=sample-ecr-bookshelf-cluster region=us-east-1
-# time="2019-07-02T02:43:41+01:00" level=info msg="Waiting for your cluster resources to be created..."
-# time="2019-07-02T02:43:42+01:00" level=info msg="Cloudformation stack status" stackStatus=CREATE_IN_PROGRESS
-# time="2019-07-02T02:44:45+01:00" level=info msg="Cloudformation stack status" stackStatus=CREATE_IN_PROGRESS
-# time="2019-07-02T02:45:48+01:00" level=info msg="Cloudformation stack status" stackStatus=CREATE_IN_PROGRESS
-# VPC created: vpc-015fd09ddfaf2dfad
-# Security Group created: sg-0b1cbea67f8fdb82f
-# Subnet created: subnet-02626a8fad33d9d10
-# Subnet created: subnet-086b27f3c0e269894
-# Cluster creation succeeded.
+
+
+vpc_id=$(echo "$result" | grep -o "VPC created: .*" | cut -f2 -d:)
+security_grp=$(echo "$result" | grep -o "Security Group created: .*" | cut -f2 -d:)
+subnet_ids=$(echo "$result" | grep -o "Subnet created: .*" | cut -f2 -d:)
+
+# use an array
+array=(${subnet_ids//,/ })
+subnet_a=${array[0]}
+subnet_b=${array[1]}
+
+echo $vpc_id
+echo $security_grp
+echo $subnet_a
+echo $subnet_b
+
+# create security group using created vpc_id
+aws ec2 create-security-group --group-name "${rainbowtext}-sg" --description "My ${rainbowtext} security group" --vpc-id ${vpc_id}
+
+# add a security group rule to allow inbound access on port 80
+aws ec2 authorize-security-group-ingress --group-name "${rainbowtext}-sg" --protocol tcp --port 80 --cidr 0.0.0.0/0
+
 
 
 # delete cluster

@@ -106,3 +106,4 @@ code.txt
 docker-compose.ecs.yml
 
 scripts/.env
+scripts/get_details.sh
