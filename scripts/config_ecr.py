@@ -39,7 +39,7 @@ if input_file == output_file == "docker-compose.yml":
     print("Please unset DOCKER_COMPOSE_YML or set it to something else.")
     exit(1)
 
-print(PROJECT_NAME, output_file, "The project name")
+print(PROJECT, output_file, "The project name")
 
 stack = yaml.safe_load(open(input_file))
 services = stack["services"]
@@ -54,7 +54,7 @@ def create_ecr_repo(services):
     for service_name, service in services.items():
         if "build" in service:
             # create repository
-            ecr_repository_name = f'{PROJECT_NAME.lower()}_{service_name}'
+            ecr_repository_name = f'{PROJECT.lower()}_{service_name}'
             try:
                 response = client.create_repository(
                     repositoryName=ecr_repository_name,
