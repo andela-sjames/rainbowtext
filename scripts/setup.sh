@@ -36,20 +36,8 @@ subnet_b=${array[1]}
 
 security_grp_id=$(echo "${security_grp}" | sed -e 's/^[[:space:]]*//')
 
-echo $vpc_id
-echo $security_grp_id
-echo $subnet_a
-echo $subnet_b
-
-# add a security group rule to allow inbound access on port 80
-# aws ec2 authorize-security-group-ingress --group-id "${security_grp_id}" --protocol tcp --port 80 --cidr 0.0.0.0/0
-
-# delete cluster
-# aws ecs delete-cluster --cluster ${rainbowtext}
-
 # call the python script with the arguments passed
 python scripts/set_ecs_params.py "${vpc_id}" "${security_grp_id}" "${subnet_a}" "${subnet_b}"
-
 
 # deploy to the ecs cluster
 ecs-cli compose --file ${DOCKER_COMPOSE_YML_OUTPUT} --ecs-params ${ECS_PARAMS_OUTPUT} --project-name ${rainbowtext} service up --create-log-groups --cluster-config ${rainbowtext}
