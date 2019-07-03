@@ -14,13 +14,13 @@ SERVER_REPOSITORY_URI = f'{ID}.dkr.ecr.{REGION}.amazonaws.com/{PROJECT}_server'
 NGINX_REPOSITORY_URI = f'{ID}.dkr.ecr.{REGION}.amazonaws.com/{PROJECT}_nginx'
 
 ECR_REPO_OBJ = {
-    f"{PROJECT_NAME}_server": SERVER_REPOSITORY_URI,
-    f"{PROJECT_NAME}_nginx": NGINX_REPOSITORY_URI
+    f"{PROJECT}_server": SERVER_REPOSITORY_URI,
+    f"{PROJECT}_nginx": NGINX_REPOSITORY_URI
 }
 
 for key, value in ECR_REPO_OBJ.items():
     response = client.delete_repository(
-        registryId=AWS_ACCOUNT_ID,
+        registryId=ID,
         repositoryName=key,
         force=True
     )
