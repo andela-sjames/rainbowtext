@@ -8,6 +8,8 @@ RUN apk update
 RUN apk add --no-cache --virtual build-dependencies \
     gcc \
     libc-dev \
+    libpcre3 \
+    libpcre3-dev \
     linux-headers \
     && pip install --no-cache-dir -r requirements.txt \
     && apk del build-dependencies
