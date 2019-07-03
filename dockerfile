@@ -5,11 +5,10 @@ ENV PYTHONUNBUFFERED 1
 ADD requirements.txt .
 
 RUN apk update
+RUN apk add pcre pcre-dev
 RUN apk add --no-cache --virtual build-dependencies \
     gcc \
     libc-dev \
-    libpcre3 \
-    libpcre3-dev \
     linux-headers \
     && pip install --no-cache-dir -r requirements.txt \
     && apk del build-dependencies
