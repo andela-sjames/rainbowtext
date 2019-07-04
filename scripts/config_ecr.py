@@ -39,8 +39,6 @@ if input_file == output_file == "docker-compose.yml":
     print("Please unset DOCKER_COMPOSE_YML or set it to something else.")
     exit(1)
 
-print(PROJECT, output_file, "The project name")
-
 stack = yaml.safe_load(open(input_file))
 services = stack["services"]
 
@@ -138,8 +136,6 @@ def update_services(ecr_repo_obj=None):
         if "volumes" in service:
             del service["volumes"]
 
-    print(services, "the service")
-
 
 # Write the new docker-compose.yml file.
 def create_deploy_docker_compose_file(output_file):
@@ -154,8 +150,8 @@ def create_deploy_docker_compose_file(output_file):
         f.writelines(lines)
 
 
-print("Wrote new compose file.")
-print(f"COMPOSE_FILE={output_file}")
+    print("Wrote new compose file.")
+    print(f"COMPOSE_FILE={output_file}")
 
 res = create_ecr_repo(services)
 re_tag_images(res)
