@@ -7,7 +7,7 @@ task_definition:
     cpu_limit: 256
   services:
     server:
-      essential: false
+      essential: true
     nginx:
       essential: false
 run_params:

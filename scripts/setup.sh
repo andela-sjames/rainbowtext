@@ -22,9 +22,6 @@ ecs-cli configure profile --access-key "$AWS_ACCESS_KEY_ID" --secret-key "$AWS_S
 # ecs-cli up
 result=$(ecs-cli up --instance-role ecsRainbowtextTaskExecutionRole --cluster ${rainbowtext})
 
-echo $result
-
-
 vpc_id=$(echo "$result" | grep -o "VPC created: .*" | cut -f2 -d:)
 security_grp=$(echo "$result" | grep -o "Security Group created: .*" | cut -f2 -d:)
 subnet_ids=$(echo "$result" | grep -o "Subnet created: .*" | cut -f2 -d:)
