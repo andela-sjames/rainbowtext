@@ -7,9 +7,9 @@ task_definition:
     cpu_limit: 256
   services:
     server:
-      essential: true
+      essential: false
     nginx:
-      essential: true
+      essential: false
 run_params:
   network_configuration:
     awsvpc_configuration:
