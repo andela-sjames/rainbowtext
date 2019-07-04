@@ -5,6 +5,11 @@ task_definition:
   task_size:
     mem_limit: 0.5GB
     cpu_limit: 256
+  services:
+    server:
+      essential: true
+    nginx:
+      essential: true
 run_params:
   network_configuration:
     awsvpc_configuration:
