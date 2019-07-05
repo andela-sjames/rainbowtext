@@ -1,7 +1,7 @@
 version: 1
 task_definition:
   task_execution_role: ecsRainbowtextTaskExecutionRole
-  ecs_network_mode: awsvpc
+  ecs_network_mode: bridge
   task_size:
     mem_limit: 0.5GB
     cpu_limit: 256
