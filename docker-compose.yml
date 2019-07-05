@@ -9,7 +9,8 @@ services:
       - .:/app
   nginx:
     container_name: rainbowtext_proxy
-    build: ./nginx
+    build:
+      context: ./nginx
     depends_on:
       - server
     ports:
