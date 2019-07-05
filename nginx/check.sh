@@ -6,9 +6,6 @@ if [[ $1 == "production" ]]; then
 else
     cd /etc/nginx/
     rm -rf nginx.conf
-    pwd && ls
     mv nginx.dev.conf nginx.conf
-    echo "I was here"
     cat nginx.conf
-    pwd && ls
 fi
