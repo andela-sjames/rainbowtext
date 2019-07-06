@@ -54,7 +54,9 @@
         <script type="text/babel">
             const paraGraphOne= "Rainbow text flask app demo."
 
-            const paraGraphTwo= "Deployed to AWS FARGATE using a generated docker-compose file. AWS(ECS & ECR) + Docker-compose."
+            const paraGraphTwo= "App auto-deployed to AWS FARGATE using a generated docker-compose file and ecs-params file."
+
+            const paraGraphThree= ""
 
             function getObj(word, color) {
                 return {
@@ -87,6 +89,7 @@
                     <div>
                         <div>{alterTextColor(paraGraphOne)}</div>
                         <div>{alterTextColor(paraGraphTwo)}</div>
+                        <div>{alterTextColor(paraGraphThree)}</div>
                     </div>
                 );
 
