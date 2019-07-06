@@ -7,5 +7,4 @@ else
     cd /etc/nginx/
     rm -rf nginx.conf
     mv nginx.dev.conf nginx.conf
-    cat nginx.conf
 fi
