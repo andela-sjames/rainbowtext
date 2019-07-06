@@ -5,6 +5,5 @@ ARG build_env
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx.dev.conf /etc/nginx/nginx.dev.conf
 
-
 COPY check.sh /tmp/
 RUN chmod u+x /tmp/check.sh && /tmp/check.sh $build_env
