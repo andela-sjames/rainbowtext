@@ -1,7 +1,7 @@
 # rainbowtext
 A mini Flask App to demonstrate auto deploy to AWS-ECS Fargate with Docker-Compose
 
-Project structure.
+Project Structure.
 ```
 - nginx
     | - check.sh
@@ -22,9 +22,11 @@ Project structure.
     | - home.html
 - .gitignore
 - app.py
+- docker-compose.ecs.yml(generated and ignored)
 - docker-compose.yml
 - dockerfile
 - ecs-params.yml
+- ecs-params.ecs.yml (generated and ignored)
 - instructions.txt
 - LICENSE
 - README.md
