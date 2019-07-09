@@ -6,5 +6,5 @@ scripts/login_ecr.sh
 # setup ecr and upload to ecr
 python scripts/config_ecr.py
 
-# setup ecs and deploy to ecs
+# setup ecs and deploy to ecs fargate
 scripts/setup_ecs.sh rainbowtext

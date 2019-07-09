@@ -33,3 +33,38 @@ Project Structure.
 - requirements.txt
 - uwsgi.ini
 ```
+
+`.env` content, this should be placed in your `scripts` folder.
+*run `source .env` to load your environment variables*
+```shell
+export AWS_ACCOUNT_ID=AWS_ACCOUNT_ID
+export AWS_REGION=us-east-1
+
+export DOCKER_COMPOSE_YML_INPUT=docker-compose.yml
+export DOCKER_COMPOSE_YML_OUTPUT=docker-compose.ecs.yml
+
+export ECS_PARAMS_INPUT=ecs-params.yml
+export ECS_PARAMS_OUTPUT=ecs-params.ecs.yml
+
+export AWS_ACCESS_KEY_ID=AWS_ACCESS_KEY_ID
+export AWS_SECRET_ACCESS_KEY=AWS_SECRET_ACCESS_KEY
+
+```
+
+
+This project makes use of Docker to automate deployment to AWS ECS FARGATE.
+
+### Build for production and deploy
+```
+docker-compose build --build-arg build_env="production" && ./scripts/deploy.sh
+```
+
+### Build locally
+```
+docker-compose build && docker-compose up
+```
+
+### Destroy after testing app
+```
+scripts/destroy.sh
+```
