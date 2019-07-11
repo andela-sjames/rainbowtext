@@ -64,6 +64,11 @@ docker-compose build --build-arg build_env="production" && ./scripts/deploy.sh
 docker-compose build && docker-compose up
 ```
 
+### Deploy to ECS FARGATE
+```
+scripts/deploy.sh
+```
+
 ### Destroy after testing app
 ```
 scripts/destroy.sh
