@@ -34,7 +34,7 @@ Project Structure.
 - uwsgi.ini
 ```
 
-`.env` content, this should be placed in your `scripts` folder.
+`.env` file should be placed in your `scripts` folder.
 *run `source .env` to load your environment variables*
 ```shell
 export AWS_ACCOUNT_ID=AWS_ACCOUNT_ID
@@ -64,7 +64,7 @@ docker-compose build --build-arg build_env="production" && ./scripts/deploy.sh
 docker-compose build && docker-compose up
 ```
 
-### Deploy to ECS FARGATE
+### Deploy to ECS Fargate
 ```
 scripts/deploy.sh
 ```
@@ -73,3 +73,6 @@ scripts/deploy.sh
 ```
 scripts/destroy.sh
 ```
+
+#### Other instructions
+`instructions.txt`
