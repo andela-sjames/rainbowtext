@@ -1,7 +1,7 @@
 # rainbowtext
 A mini Flask App to demonstrate auto deploy to AWS-ECS Fargate with Docker-Compose
 
-Project Structure.
+Project Folder Structure.
 ```
 - nginx
     | - check.sh
@@ -76,3 +76,10 @@ scripts/destroy.sh
 
 #### Other instructions
 `instructions.txt`
+
+### Some context here if you don't mind:
+The Deploy script does three basic things
+
+- It logs into ecr using `scripts/login_ecr.sh`
+- setup ecr and upload to ecr using `scripts/config_ecr.py`
+- setup ecs and deploy to ecs fargate `scripts/setup_ecs.sh rainbowtext`
