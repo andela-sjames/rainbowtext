@@ -78,8 +78,8 @@ scripts/destroy.sh
 `instructions.txt`
 
 ### Some context here if you don't mind:
-The Deploy script does three basic things
+The Deploy script does three basic things using three files
 
-- It logs into ecr using `scripts/login_ecr.sh`
-- setup ecr and upload to ecr using `scripts/config_ecr.py`
-- setup ecs and deploy to ecs fargate `scripts/setup_ecs.sh rainbowtext`
+- `scripts/login_ecr.sh`: It configures aws on your machine with a custom profile and logs into ECR.
+- `scripts/config_ecr.py`: It creates a repo on ecr and uploads created and tagged images to ECR.
+- `scripts/setup_ecs.sh rainbowtext`: Setup ECS and deploy to ECS fargate.
