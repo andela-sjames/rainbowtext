@@ -62,6 +62,8 @@ This project makes use of Docker to automate deployment to AWS ECS FARGATE.
 docker-compose build && docker-compose up
 ```
 
+Navigate to `localhost` to see the running application.
+
 ## Build for production
 
 ```shell
