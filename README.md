@@ -37,7 +37,7 @@ Project Folder Structure.
 ```
 
 `.env` file should be placed in your `scripts` folder.
-*run `source .env` to load your environment variables*
+*run `source scripts/.env` to load your environment variables*
 
 ```shell
 export AWS_ACCOUNT_ID=AWS_ACCOUNT_ID
