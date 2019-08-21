@@ -56,7 +56,7 @@ export AWS_SECRET_ACCESS_KEY=AWS_SECRET_ACCESS_KEY
 
 This project makes use of Docker to automate deployment to AWS ECS FARGATE.
 
-## Build locally
+## Build and run locally
 
 ```shell
 docker-compose build && docker-compose up
@@ -65,7 +65,13 @@ docker-compose build && docker-compose up
 ## Build for production
 
 ```shell
-docker-compose build --build-arg build_env="production" && docker-compose up
+docker-compose build --build-arg build_env="production"
+```
+
+## Deploy to production
+
+```shell
+./scripts/deploy.sh
 ```
 
 ## Build for production and deploy
