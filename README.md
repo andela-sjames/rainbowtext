@@ -1,8 +1,10 @@
 # rainbowtext
+
 A mini Flask App to demonstrate auto deploy to AWS-ECS Fargate with Docker-Compose
 
 Project Folder Structure.
-```
+
+```text
 - nginx
     | - check.sh
     | - dockerfile
@@ -36,6 +38,7 @@ Project Folder Structure.
 
 `.env` file should be placed in your `scripts` folder.
 *run `source .env` to load your environment variables*
+
 ```shell
 export AWS_ACCOUNT_ID=AWS_ACCOUNT_ID
 export AWS_REGION=us-east-1
@@ -51,33 +54,44 @@ export AWS_SECRET_ACCESS_KEY=AWS_SECRET_ACCESS_KEY
 
 ```
 
-
 This project makes use of Docker to automate deployment to AWS ECS FARGATE.
 
-### Build for production and deploy
-```
-docker-compose build --build-arg build_env="production" && ./scripts/deploy.sh
-```
+## Build locally
 
-### Build locally
-```
+```shell
 docker-compose build && docker-compose up
 ```
 
-### Deploy to ECS Fargate
+## Build for production
+
+```shell
+docker-compose build --build-arg build_env="production" && docker-compose up
 ```
+
+## Build for production and deploy
+
+```shell
+docker-compose build --build-arg build_env="production" && ./scripts/deploy.sh
+```
+
+## Deploy to ECS Fargate
+
+```shell
 scripts/deploy.sh
 ```
 
-### Destroy after testing app
-```
+## Destroy after testing app
+
+```shell
 scripts/destroy.sh
 ```
 
-#### Other instructions
+### Other instructions
+
 `instructions.txt`
 
-### Some context here if you don't mind:
+### Some context here if you don't mind
+
 The Deploy script does three basic things using three files
 
 - `scripts/login_ecr.sh`: It configures aws on your machine with a custom profile and logs into ECR.
