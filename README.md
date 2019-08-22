@@ -40,7 +40,7 @@ Project Folder Structure.
 *run `source scripts/.env` to load your environment variables*
 
 ```shell
-export AWS_ACCOUNT_ID=<YOUR_AWS_ACCOUNT_ID>
+export AWS_ACCOUNT_ID=<YOUR_AWS_IAM_ACCOUNT_ID>
 export AWS_REGION=us-east-1
 
 export DOCKER_COMPOSE_YML_INPUT=docker-compose.yml
@@ -49,8 +49,8 @@ export DOCKER_COMPOSE_YML_OUTPUT=docker-compose.ecs.yml
 export ECS_PARAMS_INPUT=ecs-params.yml
 export ECS_PARAMS_OUTPUT=ecs-params.ecs.yml
 
-export AWS_ACCESS_KEY_ID=<YOUR_AWS_ACCESS_KEY_ID>
-export AWS_SECRET_ACCESS_KEY=<YOUR_AWS_SECRET_ACCESS_KEY>
+export AWS_ACCESS_KEY_ID=<YOUR_AWS_IAM_ACCESS_KEY_ID>
+export AWS_SECRET_ACCESS_KEY=<YOUR_AWS_IAM_SECRET_ACCESS_KEY>
 
 ```
 
