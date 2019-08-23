@@ -72,6 +72,10 @@ docker-compose build --build-arg build_env="production"
 
 ## Deploy to production
 
+```text
+NB: Activate python virtual environment before running the deploy script.
+```
+
 ```shell
 ./scripts/deploy.sh
 ```
