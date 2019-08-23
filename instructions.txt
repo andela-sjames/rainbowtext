@@ -17,4 +17,9 @@ ecs-cli compose --file docker-compose.ecs.yml --ecs-params ecs-params.ecs.yml --
 # - take down the cluster
 ecs-cli down --force --cluster-config rainbowtext
 
-Further reading: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cli-tutorial-fargate.html
+Further reading: 
+
+https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-cli-tutorial-fargate.html
+https://aws.amazon.com/blogs/compute/task-networking-in-aws-fargate/
+
+
