@@ -87,12 +87,6 @@ the requirements before running the deploy script.
 docker-compose build --build-arg build_env="production" && ./scripts/deploy.sh
 ```
 
-## Deploy to ECS Fargate
-
-```shell
-scripts/deploy.sh
-```
-
 ## Destroy after testing app
 
 ```shell
