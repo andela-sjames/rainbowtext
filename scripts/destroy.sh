@@ -10,6 +10,6 @@ python scripts/del_ecr.py
 ecs-cli compose --file docker-compose.ecs.yml --ecs-params ecs-params.ecs.yml --project-name rainbowtext service down --cluster-config rainbowtext
 ecs-cli down --force --cluster-config rainbowtext
 
-# cleanup ecsRainbowtextTaskExecutionRole
+# clean up ecsRainbowtextTaskExecutionRole
 aws iam detach-role-policy --role-name ecsRainbowtextTaskExecutionRole --policy-arn arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy --profile rainbowtext
 aws iam delete-role --role-name ecsRainbowtextTaskExecutionRole --profile rainbowtext
