@@ -7,4 +7,4 @@ scripts/login_ecr.sh
 python scripts/config_ecr.py
 
 # setup ecs and deploy to ecs fargate
-scripts/setup_ecs.sh rainbowtext
+scripts/setup_ecs.sh ${AWS_PROJECT} ${AWS_ROLE}
