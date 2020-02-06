@@ -56,7 +56,7 @@ export AWS_SECRET_ACCESS_KEY=<YOUR_AWS_IAM_SECRET_ACCESS_KEY>
 
 This project makes use of Docker to automate deployment to AWS ECS FARGATE.
 
-## Create an launch box
+## Create a launch box
 
 ```
 AWS -> EC2 -> Images -> AMIs -> AMI ID = ami-09712b7bf6d670b8f
