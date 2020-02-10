@@ -95,7 +95,7 @@ docker-compose build --build-arg build_env="production"
 ./scripts/deploy.sh > deploy.log 2>&1 &
 ```
 ## Access the web service
-The deployment scripts created a cluster with an auto-generated default security group. The default rules doesn't allow inbound traffic from the Internet and we need to change that after services are up. Run `grep security_grp deploy.log` to extract the auto-generated security group ID. Go to AWS console `AWS -> VPC -> Security Groups` and search for that ID. Add an HTTP inbound rule.
+The deployment scripts create a cluster with an auto-generated default security group. The default rules doesn't allow inbound traffic from the Internet and we need to change that after services are up. Run `grep security_grp deploy.log` to extract the auto-generated security group ID. Go to AWS console `AWS -> VPC -> Security Groups` and search for that ID. Add an HTTP inbound rule.
 
 ## Destroy after testing app
 
