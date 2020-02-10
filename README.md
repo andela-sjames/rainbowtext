@@ -40,17 +40,21 @@ Project Folder Structure.
 *run `source scripts/.env` to load your environment variables*
 
 ```shell
+# Project name needs to match the docker image prefix, which is by default the same as the project root dir name
+export AWS_PROJECT=rainbowtext
+export AWS_ROLE=<YOUR_AWS_ROLE_NAME>
+
 export AWS_ACCOUNT_ID=<YOUR_AWS_IAM_ACCOUNT_ID>
-export AWS_REGION=us-east-1
+export AWS_REGION=<YOUR_AWS_REGION>
+
+export AWS_ACCESS_KEY_ID=<YOUR_AWS_IAM_ACCESS_KEY_ID>
+export AWS_SECRET_ACCESS_KEY=<YOUR_AWS_IAM_SECRET_ACCESS_KEY>
 
 export DOCKER_COMPOSE_YML_INPUT=docker-compose.yml
 export DOCKER_COMPOSE_YML_OUTPUT=docker-compose.ecs.yml
 
 export ECS_PARAMS_INPUT=ecs-params.yml
 export ECS_PARAMS_OUTPUT=ecs-params.ecs.yml
-
-export AWS_ACCESS_KEY_ID=<YOUR_AWS_IAM_ACCESS_KEY_ID>
-export AWS_SECRET_ACCESS_KEY=<YOUR_AWS_IAM_SECRET_ACCESS_KEY>
 
 ```
 
@@ -78,22 +82,20 @@ Navigate to `localhost` to see the running application.
 docker-compose build --build-arg build_env="production"
 ```
 
-## Deploy to production
+## Build for production and deploy
 
 ```text
 NB: Activate python virtual environment and pip install
 the requirements before running the deploy script.
+The deploy script needs to run with python3
 ```
 
 ```shell
-./scripts/deploy.sh
+docker-compose build --build-arg build_env="production"
+./scripts/deploy.sh > deploy.log 2>&1 &
 ```
-
-## Build for production and deploy
-
-```shell
-docker-compose build --build-arg build_env="production" && ./scripts/deploy.sh
-```
+## Access the web service
+The deployment scripts created a cluster with an auto-generated default security group. The default rules doesn't allow inbound traffic from the Internet and we need to change that after services are up. Run `grep security_grp deploy.log` to extract the auto-generated security group ID. Go to AWS console `AWS -> VPC -> Security Groups` and search for that ID. Add an HTTP inbound rule.
 
 ## Destroy after testing app
 

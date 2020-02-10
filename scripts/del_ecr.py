@@ -5,9 +5,7 @@ client = boto3.client('ecr')
 
 ID = os.getenv('AWS_ACCOUNT_ID', 'your_AWS_id')
 REGION = os.getenv('AWS_REGION', 'your_aws_region')
-
-# Get the name of the current directory
-PROJECT = os.path.basename(os.path.realpath("."))
+PROJECT = os.getenv('AWS_PROJECT', 'your_aws_region')
 
 # use if repository exist
 SERVER_REPOSITORY_URI = f'{ID}.dkr.ecr.{REGION}.amazonaws.com/{PROJECT}_server'

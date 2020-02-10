@@ -10,9 +10,7 @@ client = boto3.client('ecr')
 
 ID = os.getenv('AWS_ACCOUNT_ID', 'your_AWS_id')
 REGION = os.getenv('AWS_REGION', 'your_aws_region')
-
-# Get the name of the current directory
-PROJECT = os.path.basename(os.path.realpath("."))
+PROJECT = os.getenv('AWS_PROJECT', 'your_aws_project')
 
 # use if repository exist
 SERVER_REPOSITORY_URI = f'{ID}.dkr.ecr.{REGION}.amazonaws.com/{PROJECT}_server'
@@ -116,18 +114,18 @@ def update_services(ecr_repo_obj=None):
             service["logging"] = {
                 'driver': 'awslogs',
                 'options': {
-                    'awslogs-group': 'rainbowtext',
-                    'awslogs-region': 'us-east-1', 
-                    'awslogs-stream-prefix': 'rainbowtext-server'
+                    'awslogs-group': f"{PROJECT}",
+                    'awslogs-region': f"{REGION}",
+                    'awslogs-stream-prefix': f'{PROJECT}-server'
                     }
                 }
         if service_name == "nginx":
             service["logging"] = {
                 'driver': 'awslogs',
                 'options': {
-                    'awslogs-group': 'rainbowtext',
-                    'awslogs-region': 'us-east-1', 
-                    'awslogs-stream-prefix': 'rainbowtext-nginx'
+                    'awslogs-group': f"{PROJECT}",
+                    'awslogs-region': f"{REGION}",
+                    'awslogs-stream-prefix': f'{PROJECT}-nginx'
                     }
                 }
         if "build" in service:
